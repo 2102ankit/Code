@@ -1,0 +1,1 @@
+{"name":"Local: template","url":"c:\\Users\\ankit\\OneDrive\\Desktop\\Code\\template.cpp","tests":[{"id":1685177375733,"input":"5","output":"Hello World\nHello World\nHello World\nHello World\nHello World"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\ankit\\OneDrive\\Desktop\\Code\\template.cpp","group":"local","local":true}
