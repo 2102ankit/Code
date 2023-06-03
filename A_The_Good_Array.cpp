@@ -25,18 +25,15 @@ const ld EPS = 1e-9;
 
 void solve()
 {
-    int n;
-    cin >> n;
-    for (int k = 1; k <= n; k++)
+    int n, k;
+    cin >> n >> k;
+    int x = n;
+    if (k == 1)
     {
-        ll k2 = k * k, all = k2 * (k2 - 1) / 2;
-        if (k > 2)
-        {
-            // for every 2x3 and 3x2 box 2 positons such that they attack each other
-            all = all - 2 * 2 * (k - 1) * (k - 2);
-        }
-        cout << all << endl;
+        cout << n << endl;
+        return;
     }
+    cout << ceil((n / k)) + 1 << endl;
 }
 
 int main()
@@ -45,7 +42,7 @@ int main()
     cin.tie(0);
     cout.tie(0);
     int tc = 1;
-    // cin >> tc;
+    cin >> tc;
 
     for (int t = 1; t <= tc; t++)
     {

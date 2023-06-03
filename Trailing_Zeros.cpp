@@ -25,18 +25,9 @@ const ld EPS = 1e-9;
 
 void solve()
 {
-    int n;
+    ll n;
     cin >> n;
-    for (int k = 1; k <= n; k++)
-    {
-        ll k2 = k * k, all = k2 * (k2 - 1) / 2;
-        if (k > 2)
-        {
-            // for every 2x3 and 3x2 box 2 positons such that they attack each other
-            all = all - 2 * 2 * (k - 1) * (k - 2);
-        }
-        cout << all << endl;
-    }
+    cout << n / 5;
 }
 
 int main()

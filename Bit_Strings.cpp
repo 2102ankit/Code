@@ -23,20 +23,21 @@ const ll MOD = 1e9 + 7;
 const ll INF = 1e9;
 const ld EPS = 1e-9;
 
+ll power(ll n)
+{
+    ll ans = 1;
+    while (n != 0)
+    {
+        ans = (ans * 2) % MOD;
+        n--;
+    }
+    return ans;
+}
 void solve()
 {
-    int n;
+    ll n;
     cin >> n;
-    for (int k = 1; k <= n; k++)
-    {
-        ll k2 = k * k, all = k2 * (k2 - 1) / 2;
-        if (k > 2)
-        {
-            // for every 2x3 and 3x2 box 2 positons such that they attack each other
-            all = all - 2 * 2 * (k - 1) * (k - 2);
-        }
-        cout << all << endl;
-    }
+    cout << power(n);
 }
 
 int main()

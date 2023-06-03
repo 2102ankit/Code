@@ -25,18 +25,44 @@ const ld EPS = 1e-9;
 
 void solve()
 {
-    int n;
+    ll n, x, s1 = 0, s2 = 0;
     cin >> n;
-    for (int k = 1; k <= n; k++)
+    x = n;
+    ll sum = n * (n + 1) / 2;
+    sum = sum / 2;
+    ll ans = 0;
+    vi v1, v2;
+    while (x != 0)
     {
-        ll k2 = k * k, all = k2 * (k2 - 1) / 2;
-        if (k > 2)
+        // cout << "x = " << x << endl;
+        // cout << "ans + x = " << ans + x << endl;
+        if (ans + x <= sum)
         {
-            // for every 2x3 and 3x2 box 2 positons such that they attack each other
-            all = all - 2 * 2 * (k - 1) * (k - 2);
+
+            ans = ans + x;
+            v1.pb(x);
+            s1 += x;
         }
-        cout << all << endl;
+        else
+        {
+            v2.pb(x);
+            s2 += x;
+        }
+        // cout << "s1 = " << s1 << " s2 = " << s2 << endl;
+        x--;
     }
+    if (s1 != s2)
+    {
+        cout << "NO";
+        return;
+    }
+    cout << "YES" << endl;
+    cout << v1.size() << endl;
+    forr(v1.size()) cout << v1[i] << " ";
+    cout << endl;
+    cout << v2.size() << endl;
+    forr(v2.size()) cout << v2[i] << " ";
+    cout << endl;
 }
 
 int main()
