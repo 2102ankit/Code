@@ -27,7 +27,15 @@ void solve()
 {
     ll n;
     cin >> n;
-    cout << n / 5;
+    ll ctr = 0;
+    // divide by increasing powers of 5
+    ll d = 5;
+    while (d <= pow(5, 15))
+    {   //cout << " d = " << d << endl;
+        ctr += (n / d);
+        d = d * 5;
+    }
+    cout << ctr << endl;
 }
 
 int main()
