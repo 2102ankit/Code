@@ -1,4 +1,7 @@
 {
     "C_Cpp.errorSquiggles": "disabled",
-    "cph.general.onceMaintainerMessage": false
+    "cph.general.onceMaintainerMessage": false,
+    "files.associations": {
+        "iostream": "cpp"
+    }
 }
