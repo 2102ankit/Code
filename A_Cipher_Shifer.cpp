@@ -19,6 +19,9 @@ typedef unordered_map<ll, ll> umap;
 #define endl "\n"
 #define forr(n) for (int i = 0; i < n; i++)
 
+#define dbg(v) \
+    cout << "Line(" << __LINE__ << ") -> " << #v << " = " << (v) << endl;
+
 const int MAX_N = 1e5 + 5;
 const ll MOD = 1e9 + 7;
 const ll INF = 1e9;
@@ -61,7 +64,7 @@ void solve()
                 cout << vc[j];
                 i.S--;
             }
-            j++;
+        j++;
         // cout << "# i.F = " << i.F << " | i.S = " << i.S << endl;
     }
 
