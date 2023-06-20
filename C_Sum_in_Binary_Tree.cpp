@@ -36,6 +36,17 @@ const ld EPS = 1e-9;
 
 void solve()
 {
+    ll n;
+    cin >> n;
+    // dbg(n)
+    ll sum = 0;
+    while(n!=0){
+        sum+= n;
+        // dbg(n);
+        // dbg(sum)
+        n = n/2;
+    }
+    cout << sum << nl;
 }
 
 int main()

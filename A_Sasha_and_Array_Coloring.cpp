@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-#include "debugging.h"
+// #include "debugging.h"
 
 using namespace std;
 
@@ -36,6 +36,24 @@ const ld EPS = 1e-9;
 
 void solve()
 {
+    int n;
+    cin >> n;
+    vi arr;
+    forr(n)
+    {
+        int x;
+        cin >> x;
+        arr.pb(x);
+    }
+    sort(all(arr));
+    int l = 0;
+    int r = arr.size() - 1;
+    int sum = 0;
+    while (l <= r)
+    {
+        sum += arr[r--] - arr[l++];
+    }
+    cout << sum << nl;
 }
 
 int main()

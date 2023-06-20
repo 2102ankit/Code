@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-#include "debugging.h"
 
 using namespace std;
 
@@ -34,15 +33,48 @@ const ll MOD = 1e9 + 7;
 const ll INF = 1e9;
 const ld EPS = 1e-9;
 
+void perm(string &str, set<string> &ans, int index)
+{
+    if (index >= str.length())
+    {
+        ans.insert(str);
+        return;
+    }
+
+    for (int i = index; i < str.length(); i++)
+    {
+        swap(str[index], str[i]);
+        perm(str, ans, index + 1);
+        swap(str[index], str[i]);
+    }
+}
+
 void solve()
 {
+    string str;
+    cin >> str;
+    set<string> ans;
+    int index = 0;
+    perm(str, ans, index);
+    vector<string> sol;
+    // cout << ans;
+    for (auto ele : ans)
+    {
+        sol.push_back(ele);
+    }
+    sort(sol.begin(), sol.end());
+    cout << sol.size() << endl;
+    for (auto ele : sol)
+    {
+        cout << ele << endl;
+    }
 }
 
 int main()
 {
     fastio();
     int tc = 1;
-    cin >> tc;
+    // cin >> tc;
 
     for (int t = 1; t <= tc; t++)
     {

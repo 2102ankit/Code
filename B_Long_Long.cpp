@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-#include "debugging.h"
+// #include "debugging.h"
 
 using namespace std;
 
@@ -36,6 +36,48 @@ const ld EPS = 1e-9;
 
 void solve()
 {
+    ll n;
+    cin >> n;
+    vi arr;
+    ll sum = 0;
+    for (ll i = 0; i < n; i++)
+    {
+        ll x;
+        cin >> x;
+        arr.pb(x);
+        sum += abs(arr[i]);
+    }
+    ll prev = 0, ctr = 0;
+
+    ll rises = 0, falls = 0, prevsum = 0;
+    bool wasFall = 0;
+    prevsum = arr[0];
+    if (arr[0] < 0)
+        wasFall = 1;
+    for (ll i = 1; i < n; i++)
+    {
+        if (arr[i] > 0 && prevsum < 0)
+        {
+            rises++;
+            wasFall = 0;
+            prevsum = 1;
+            continue;
+        }
+        if (arr[i] < 0 && prevsum >= 0)
+        {
+            falls++;
+            wasFall = 1;
+            prevsum = -1;
+            continue;
+        }
+        prevsum += arr[i];
+    }
+    if (wasFall)
+        rises++;
+
+    cout << sum << " " << rises << nl;
+
+    // jitne subparts aise hai jo ki composed hai -ve ya zero se un sabke liye cnt ek se plus;
 }
 
 int main()

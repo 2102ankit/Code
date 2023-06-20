@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-#include "debugging.h"
+// #include "debugging.h"
 
 using namespace std;
 
@@ -36,6 +36,36 @@ const ld EPS = 1e-9;
 
 void solve()
 {
+    int n;
+    cin >> n;
+    vi arr;
+    int plus1 = 0;
+    int minus1 = 0;
+    for (int i = 0; i < n; i++)
+    {
+        int x;
+        cin >> x;
+        arr.pb(x);
+        if (arr[i] == 1)
+            plus1++;
+        else
+            minus1++;
+    }
+    int ans = 0;
+    // dbg(minus1);
+    // dbg(plus1);
+    int diff = ceil(n / 2.0) - plus1;
+    if (diff < 0)
+        diff = 0;
+    // dbg(diff);
+    ans = max(ans, diff);
+    minus1 -= diff;
+    plus1 += diff;
+    // dbg(minus1);
+    // dbg(plus1);
+    if (minus1 % 2 != 0)
+        ans++;
+    cout << ans << nl;
 }
 
 int main()
@@ -46,8 +76,9 @@ int main()
 
     for (int t = 1; t <= tc; t++)
     {
-        // cout << "Case #" << t << ": ";
+        // cerr << "\nCase #" << t << ": ";
         solve();
+        // cerr << nl;
     }
 }
 
