@@ -140,7 +140,6 @@ std::ostream &operator<<(std::ostream &out, const std::set<T> &set)
     return out << '}';
 }
 
-// Source: https://stackoverflow.com/a/31116392/12128483
 template <typename Type, unsigned N, unsigned Last>
 struct TuplePrinter
 {

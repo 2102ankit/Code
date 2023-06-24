@@ -28,59 +28,50 @@ const ll MOD = 1e9 + 7;
 const ll INF = 1e9;
 const ld EPS = 1e-9;
 
+#define dbg(v) \
+    ;          \
+    cerr << "Line(" << __LINE__ << ") -> " << #v << " = " << (v) << endl;
+
 void solve()
 {
-    int q;
-    cin >> q;
-    vi v;
-    int n = q;
-    while (n--)
+    int n;
+    cin >> n;
+    // back is vectpr.back(); a0 = a[0]; ai = a[i]
+    int back = -1, uptrend = 0, a0 = -1;
+    int ai;
+    for (int i = 0; i < n; i++)
     {
-        ll x;
-        cin >> x;
-        v.push_back(x);
-    }
-
-    int i = 0;
-    ll prev = 0;
-    for (i; i < q; i++)
-    {
-        if (v[i] >= prev)
+        cin >> ai;
+        if (i == 0)
         {
             cout << "1";
-            prev = v[i];
+            a0 = back = ai;
         }
-        else
+        else if (uptrend)
         {
-            break;
+            if (ai >= back and ai <= a0)
+            {
+                cout << "1";
+                back = ai;
+            }
+            else
+                cout << "0";
         }
-    }
-    if (i == q)
-    {
-        cout << endl;
-        return;
-    }
-
-    if (v[i] <= prev && v[i] <= v[0])
-    {
-        cout << "1";
-        prev = v[i];
-    }
-    else
-        cout << "0";
-    i++;
-
-    for (i; i < q; i++)
-    {
-        if (v[i] >= prev && v[i] <= v[0])
+        else if (ai >= back)
         {
             cout << "1";
-            prev = v[i];
+            back = ai;
+        }
+        else if (ai <= a0)
+        {
+            cout << "1";
+            uptrend = 1;
+            back = ai;
         }
         else
             cout << "0";
     }
-    cout << endl;
+    cout << nl;
 }
 
 int main()
@@ -94,7 +85,8 @@ int main()
 
     for (int t = 1; t <= tc; t++)
     {
-        // cout << "Case #" << t << ": ";
+        // cerr << "Case #" << t << ": ";
         solve();
+        // cerr << nl;
     }
 }

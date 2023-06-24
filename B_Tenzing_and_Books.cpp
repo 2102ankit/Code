@@ -36,6 +36,67 @@ const ld EPS = 1e-9;
 
 void solve()
 {
+    int n, x;
+    cin >> n >> x;
+    if (x == 0)
+    {
+        cout << "Yes\n";
+        return;
+    }
+    ll ans = 0;
+    bool flag = false;
+    loop(i, n)
+    {
+        int ai;
+        cin >> ai;
+        if (ai <= x)
+        {
+            ans = ans | ai;
+            if (ans == x)
+            {
+                cout << "Yes\n";
+                return;
+            }
+        }
+        else
+            while (i != n)
+                i++;
+    }
+    loop(i, n)
+    {
+        int ai;
+        cin >> ai;
+        if (ai <= x)
+        {
+            ans = ans | ai;
+            if (ans == x)
+            {
+                cout << "Yes\n";
+                return;
+            }
+        }
+        else
+            while (i != n)
+                i++;
+    }
+    loop(i, n)
+    {
+        int ai;
+        cin >> ai;
+        if (ai <= x)
+        {
+            ans = ans | ai;
+            if (ans == x)
+            {
+                cout << "Yes\n";
+                return;
+            }
+        }
+        else
+            while (i != n)
+                i++;
+    }
+    cout << "No\n";
 }
 
 int main()

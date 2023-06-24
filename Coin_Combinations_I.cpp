@@ -36,13 +36,30 @@ const ld EPS = 1e-9;
 
 void solve()
 {
+    int n, x;
+    cin >> n >> x;
+    int a[n];
+    forr(n) cin >> a[i];
+    vi dp(x + 1, 0); // x = 9
+    dp[0] = 1;
+    for (int i = 1; i <= x; i++)
+    {
+        int ans = 0;
+        for (int j = 0; j < n; j++)
+        {
+            if (i - a[j] >= 0)
+                ans = (ans + dp[i - a[j]]) % MOD;
+        }
+        dp[i] = ans;
+    }
+    cout << dp[x];
 }
 
 int main()
 {
     fastio();
     int tc = 1;
-    cin >> tc;
+    // cin >> tc;
 
     for (int t = 1; t <= tc; t++)
     {

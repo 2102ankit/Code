@@ -36,7 +36,62 @@ const ld EPS = 1e-9;
 
 void solve()
 {
+    int n, q, k;
+    cin >> n >> k >> q;
+    vi A(n);
+    forr(n) cin >> A[i];
+    ll ans = 0;
+    int j = -1;
+    forr(n)
+    {
+        if (A[i] > q)
+            j = i;
+        ans += max(0, i - j - k + 1);
+    }
+    cout << ans << nl;
 }
+
+// void solve()
+// {
+//     ll n, k, q;
+//     cin >> n >> k >> q;
+//     vi arr(n + 1);
+//     for (int i = 0; i < n; i++)
+//     {
+//         ll x;
+//         cin >> x;
+//         if (x > q)
+//         {
+//             arr[i] = 0;
+//         }
+//         else
+//             arr[i] = 1;
+//     }
+//     // array has been made; now in a vector store the l's of continuous one's
+//     vi vec;
+//     for (int i = 0; i < n;)
+//     {
+//         int ctr = 0;
+//         while (i < n)
+//         {
+//             if (arr[i++] == 1)
+//                 ctr++;
+//             else
+//                 break;
+//         }
+//         if (ctr >= k)
+//         {
+//             vec.push_back(ctr);
+//         }
+//     }
+//     ll ans = 0;
+//     for (auto l : vec)
+//     {
+//         // ans += ncr(el - k + 2, el - k);
+//         ans += (l - k + 2) * (l - k + 1)/2;
+//     }
+//     cout << ans << nl;
+// }
 
 int main()
 {

@@ -36,13 +36,44 @@ const ld EPS = 1e-9;
 
 void solve()
 {
+    int n, x;
+    cin >> n >> x;
+    vi v(n + 1);
+    for (int i = 1; i <= n; i++)
+    {
+        cin >> v[i];
+        // dbg(v[i]);
+    }
+
+    // dbg("-----------");
+    // ll dp[n + 1][x + 1];
+    vector<vector<int>> dp(n + 1, vector<int>(x + 1, 0));
+    // dbg(dp);
+    // dbg("-----------");
+    for (int i = 1; i <= n; i++)
+    {
+        for (int sum = 0; sum <= x; sum++)
+        {
+            if (sum == 0)
+                dp[i][sum] = 1;
+            else
+            {
+                ll op1 = (v[i] > sum) ? 0 : dp[i][sum - v[i]];
+                ll op2 = (i == 1) ? 0 : dp[i - 1][sum];
+                dp[i][sum] = (op1 + op2) % MOD;
+                // dbg(dp[i][sum]);
+            }
+        }
+    }
+
+    cout << dp[n][x];
 }
 
 int main()
 {
     fastio();
     int tc = 1;
-    cin >> tc;
+    // cin >> tc;
 
     for (int t = 1; t <= tc; t++)
     {

@@ -36,48 +36,13 @@ void solve()
     cin >> n;
     string s;
     cin >> s;
-    unordered_map<char, int> myMap;
-    unordered_map<char, int>::iterator p;
-    vector<char> vc;
-    // const auto p : myMap;
-    for (int i = 0; i < n; i++)
+    // pick char, print, iterate till same char not found move to next char, do this while index is  in length;
+    for (int i = 0; i < n; i)
     {
-        char ch = s[i];
-        p = myMap.find(ch);
-
-        if (p != myMap.end())
-            p->S = p->S + 1;
-        else
-        {
-            myMap.insert(pair<char, int>(ch, 1));
-            vc.pb(ch);
-        }
+        char ch = s[i++];
+        cout << ch;
+        while (s[i++] != ch);
     }
-    int j = 0;
-    for (auto i : myMap)
-    {
-        // cout << "i.F = " << i.F << " | i.S = " << i.S << endl;
-        i.S = i.S / 2;
-        if (i.S > 0)
-            while (i.S != 0)
-            {
-                cout << vc[j];
-                i.S--;
-            }
-        j++;
-        // cout << "# i.F = " << i.F << " | i.S = " << i.S << endl;
-    }
-
-    // for (auto i : myMap)
-    // {
-    //     cout << "in Map > i.F = " << i.F << " | i.S = " << i.S << endl;
-    //     if (i.S > 0)
-    //         while (i.S != 0)
-    //         {
-    //             cout << i.F;
-    //             i.S--;
-    //         }
-    // }
     cout << endl;
 }
 

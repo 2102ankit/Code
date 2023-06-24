@@ -36,13 +36,37 @@ const ld EPS = 1e-9;
 
 void solve()
 {
+    int n, x;
+    cin >> n >> x;
+    // dbg(n);
+    // dbg(x);
+    vi arr(n);
+    forr(n) cin >> arr[i];
+    // dbg(arr);
+    ll dp[x + 1];
+    dp[0] = 0;
+    // dp[x] min ways to gen num x from given coins
+    for (int i = 1; i <= x; i++)
+    {
+        ll minC = INT_MAX;
+        for (int j = 0; j < n; j++)
+        {
+            if (arr[j] <= i)
+                minC = min(minC, 1 + dp[i - arr[j]]);
+        }
+        dp[i] = minC;
+    }
+    if (dp[x] == INT_MAX)
+        cout << -1;
+    else
+        cout << dp[x];
 }
 
 int main()
 {
     fastio();
     int tc = 1;
-    cin >> tc;
+    // cin >> tc;
 
     for (int t = 1; t <= tc; t++)
     {

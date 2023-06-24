@@ -36,13 +36,52 @@ const ld EPS = 1e-9;
 
 void solve()
 {
+    int n;
+    cin >> n;
+    int grid[n + 1][n + 1];
+    rep(i, 1, n + 1)
+    {
+        rep(j, 1, n + 1)
+        {
+            char ch;
+            cin >> ch;
+            if (ch == '.')
+                grid[i][j] = 0;
+            else
+                grid[i][j] = 1;
+        }
+    }
+
+    int dp[n + 1][n + 1];
+    for (int i = n; i >= 1; i--)
+    {
+        for (int j = n; j >= 1; j--)
+        {
+            if (i == n && j == n)
+            {
+                dp[n][n] = 1;
+            }
+            else
+            {
+                int op1 = (i == n) ? 0 : dp[i + 1][j];
+                int op2 = (j == n) ? 0 : dp[i][j + 1];
+                dp[i][j] = (op1 + op2) % MOD;
+                if (grid[i][j] == 1)
+                    dp[i][j] = 0;
+            }
+        }
+    }
+    if (grid[n][n])
+        cout << 0;
+    else
+        cout << dp[1][1];
 }
 
 int main()
 {
     fastio();
     int tc = 1;
-    cin >> tc;
+    // cin >> tc;
 
     for (int t = 1; t <= tc; t++)
     {

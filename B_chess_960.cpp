@@ -2,10 +2,7 @@
 
 using namespace std;
 
-#define fastio()                      \
-    ios_base::sync_with_stdio(false); \
-    cin.tie(NULL);                    \
-    cout.tie(NULL)
+#define fastio() ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
 typedef long long ll;
 typedef pair<int, int> pii;
 typedef pair<ll, ll> pll;
@@ -29,13 +26,11 @@ const ll INF = 1e9;
 const ld EPS = 1e-9;
 
 #ifdef ONLINE_JUDGE
-#define debug(x)       \
-    cerr << #x << " "; \
-    _print(x);         \
-    cerr << endl;
+#define debug(v);cerr << "Line(" << __LINE__ << ") -> " << #v << " = " << (v) << endl;
 #else
 #define debug(x) ;
 #endif
+
 
 void solve()
 {
@@ -72,6 +67,8 @@ void solve()
         cout << "Yes";
     else
         cout << "No";
+    
+    debug(c1);
 }
 
 int main()

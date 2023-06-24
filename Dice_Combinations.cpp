@@ -236,21 +236,18 @@ void solve()
 {
     int n;
     cin >> n;
-    vi dp(n + 1, 1);
-    dp[0] = 0;
-    dp[1] = 1;
-    for (int i = 2; i <= n; i++)
+    vi dp(n + 1, 0);
+    dp[0] = 1;
+    for (int i = 1; i <= n; i++)
     {
-        ll a = 0;
-        for (int j = i; j > 0; j--)
+        for (int x = 1; x <= 6; x++)
         {
-
-            a += dp[j];
+            if (x > i)
+                break;
+            dp[i] = (dp[i] + dp[i - x]) % MOD;
         }
-        dp[i] = a;
     }
-    forr(n+1) cout << dp[i] << " ";
-    // cout << dp[n] % MOD;
+    cout << dp[n] % MOD;
 }
 
 int main()

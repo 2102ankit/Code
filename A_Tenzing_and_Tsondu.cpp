@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-// #include "debugging.h"
+#include "debugging.h"
 
 using namespace std;
 
@@ -36,6 +36,31 @@ const ld EPS = 1e-9;
 
 void solve()
 {
+    int n, m;
+    cin >> n >> m;
+    ll ts = 0, te = 0;
+    forr(n)
+    {
+        int x;
+        cin >> x;
+        ts += x;
+    }
+    forr(m)
+    {
+        int x;
+        cin >> x;
+        te += x;
+    }
+    if (ts == te)
+    {
+        cout << "Draw" << nl;
+    }
+    else if (ts > te)
+    {
+        cout << "Tsondu" << nl;
+    }
+    else
+        cout << "Tenzing" << nl;
 }
 
 int main()

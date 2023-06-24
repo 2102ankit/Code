@@ -36,6 +36,10 @@ const ld EPS = 1e-9;
 
 void solve()
 {
+    int n, k;
+    cin >> n >> k;
+    k = min(k,30);
+    cout << min(n + 1, (1<<k) ) << nl;
 }
 
 int main()
@@ -46,8 +50,9 @@ int main()
 
     for (int t = 1; t <= tc; t++)
     {
-        // cout << "Case #" << t << ": ";
+        // cerr << "Case #" << t << ": ";
         solve();
+        // cerr << nl;
     }
 }
 

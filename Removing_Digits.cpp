@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+
 // #include "debugging.h"
 
 using namespace std;
@@ -15,7 +16,7 @@ typedef long long ll;
 typedef long double ld;
 typedef pair<int, int> pii;
 typedef pair<ll, ll> pll;
-typedef vector<ll> vi;
+typedef vector<ll> vi;  
 typedef vector<pll> vpll;
 typedef unordered_map<ll, ll> umap;
 #define ff first
@@ -36,13 +37,38 @@ const ld EPS = 1e-9;
 
 void solve()
 {
+    int n;
+    cin >> n;
+    int dp[n + 1];
+    dp[0] = 0;
+
+    /*
+     * dp[i] represets min way of geeting num i to zero
+     * dp[0] = 0 because there is no meaning getting zero to zero again
+     * final ans dp[n] i.e. min ways of conerting n to 0
+     * dp[i] is min of the 1 + dp of i - its digits
+    */
+    for (int i = 1; i <= n; i++)
+    {
+        int temp = i;
+        int mn = INT_MAX;
+        while (temp != 0)
+        {
+            int di = temp % 10;
+            temp /= 10;
+            if (di != 0 )
+                mn = min(mn, 1 + dp[i - di]);
+        }
+        dp[i] = mn;
+    }
+    cout << dp[n];
 }
 
 int main()
 {
     fastio();
     int tc = 1;
-    cin >> tc;
+    // cin >> tc;
 
     for (int t = 1; t <= tc; t++)
     {
