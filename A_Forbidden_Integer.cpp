@@ -26,7 +26,7 @@ typedef unordered_map<ll, ll> umap;
 #define all(a) (a).begin(), (a).end()
 #define nl "\n"
 #define forr(n) for (int i = 0; i < n; i++)
-#define fr(i, n) for (int i = 0; i < n; i++)
+#define loop(i, n) for (int i = 0; i < n; i++)
 #define rep(i, x, n) for (int i = x; i < n; i++)
 
 const int MAX_N = 1e5 + 5;
@@ -38,6 +38,48 @@ const ld EPS = 1e-9;
 
 void solve()
 {
+    int n, k, x;
+    cin >> n >> k >> x;
+    if (x != 1)
+    {
+        cout << "YES\n"
+             << n << nl;
+        while (n--)
+        {
+            cout << 1 << " ";
+        }
+        cout << nl;
+        return;
+    }
+    else
+    {
+        if (n % 2 == 0 && k > 1)
+        {
+            cout << "YES\n"
+                 << n / 2 << nl;
+            while (n != 0)
+            {
+                cout << 2 << " ";
+                n -= 2;
+            }
+            cout << nl;
+            return;
+        }
+        else if (n % 2 == 1 && k > 2)
+        {
+            cout << "YES\n"
+                 << (n - 3) / 2 + 1 << nl;
+            while (n > 3)
+            {
+                cout << 2 << " ";
+                n -= 2;
+            }
+            cout << 3 << nl;
+            return;
+        }
+        else
+            cout << "NO\n";
+    }
 }
 
 int main()

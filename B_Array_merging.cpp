@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-
+// #include "debugging.h"
 using namespace std;
 typedef long long ll;
 typedef pair<int, int> pii;
@@ -18,6 +18,11 @@ typedef unordered_map<ll, ll> umap;
 #define endl "\n"
 #define forr(n) for (int i = 0; i < n; i++)
 
+#define dbg(v) \
+    cerr << "Line(" << __LINE__ << ") -> " << #v << " = " << (v) << endl;
+
+#define nl "\n";
+
 const int MAX_N = 1e5 + 5;
 const ll MOD = 1e9 + 7;
 const ll INF = 1e9;
@@ -31,45 +36,58 @@ void solve()
     forr(n) cin >> a[i];
     forr(n) cin >> b[i];
 
-    // for line a
-    int max_ctr = 0;
-    for (int i = 0; i < n; i++)
+    umap ma, mb;
+    for (int i = 0; i < n;)
     {
-        int ctr = 0;
-        for (int j = 0; j < n; j++)
+        ll curr = a[i];
+        ll ctr = 1;
+        while (++i < n)
         {
-            // cout << "l1 -> i : " << i << " j : " << j << "a[i]:" << a[i] << " a[j] :" << a[j] << " b[i] : " << b[i] << " b[j] :" << b[j] << endl;
-            if (a[j] == a[i] && b[j] == a[i])
+            if (a[i] == curr)
                 ctr++;
-            if (a[j] == a[i] || b[j] == a[i])
-                ctr++;
-            // else
-            //     break;
+            else
+                break;
         }
-        // cout << "ctr = " << ctr << " max_ctr = " << max_ctr << endl;
-        if (ctr > max_ctr)
-            max_ctr = ctr;
+
+        ma[curr] = max(ma[curr], ctr);
+    }
+    // for (auto el : ma)
+    // {
+    //     cout << "[" << el.first << " " << el.second <<"]" << nl;
+    // }
+
+    for (int i = 0; i < n;)
+    {
+        ll curr = b[i];
+        ll ctr = 1;
+        while (++i < n)
+        {
+            if (b[i] == curr)
+                ctr++;
+            else
+                break;
+        }
+        mb[curr] = max(mb[curr], ctr);
     }
 
-    for (int i = 0; i < n; i++)
-    {
-        int ctr = 0;
-        for (int j = 0; j < n; j++)
-        {
-            // cout << "l2 -> i : " << i << " j : " << j << "a[i]:" << a[i] << " a[j] :" << a[j] << " b[i] : " << b[i] << " b[j] :" << b[j] << endl;
-            if (a[j] == b[i] && b[j] == b[i])
-                ctr++;
-            if (a[j] == b[i] || b[j] == b[i])
-                ctr++;
-            // else
-            //     break;
-        }
-        // cout << "ctr = " << ctr << " max_ctr = " << max_ctr << endl;
-        if (ctr > max_ctr)
-            max_ctr = ctr;
-    }
+    // for (auto el : mb)
+    // {
+    //     cout << "[" << el.first << " " << el.second <<"]" << nl;
+    // }
 
-    cout << max_ctr << endl;
+    ll ans = 0;
+
+    for (auto el : a)
+    {
+        ans = max(ans, ma[el] + mb[el]);
+        // cout <<"[ans = " << ans << "]" << nl;
+    }
+    for (auto el : b)
+    {
+        ans = max(ans, ma[el] + mb[el]);
+        // cout <<"[ans = " << ans << "]" << nl;
+    }
+    cout << ans << endl;
 }
 
 int main()

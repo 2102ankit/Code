@@ -26,7 +26,7 @@ typedef unordered_map<ll, ll> umap;
 #define all(a) (a).begin(), (a).end()
 #define nl "\n"
 #define forr(n) for (int i = 0; i < n; i++)
-#define fr(i, n) for (int i = 0; i < n; i++)
+#define loop(i, n) for (int i = 0; i < n; i++)
 #define rep(i, x, n) for (int i = x; i < n; i++)
 
 const int MAX_N = 1e5 + 5;
@@ -35,9 +35,58 @@ const ll INF = 1e9;
 const ld EPS = 1e-9;
 
 // min max => try bin search
+int giveidx(string &s, int target, int start, int end)
+{ // dbg(target)
+    char c = '0' + (target);
+    // dbg(c);
+    int i;
+    // dbg(start);
+    // dbg(end);
+    for (i = start; i < end; i++)
+    {
+        // dbg(i);
+        // dbg(s[i]);
+        // dbg(c);
+        if (s[i] == c)
+        {
+            // dbg("ifff");
+            break;
+        }
+    }
+    return i;
+}
 
 void solve()
 {
+    string s, l, r;
+    cin >> s;
+    int m, p = 0;
+    cin >> m;
+    cin >> l >> r;
+    int len = s.length();
+    for (int i = 0; i < m; i++)
+    { // int start = '0' + l[i];
+        // int end = '0' + r
+        // for (int j = 0; j < m; j++) // jth position of key
+        // {
+        //     int curri = i;
+            for (int x = l[i] - '0'; x <= r[i] - '0'; x++)
+            {
+                dbg(x);
+                p = giveidx(s, x, p, len);
+                dbg(p);
+                if (p == m)
+                {
+                    cout << "YES\n";
+                    return;
+                }
+                // i++;
+            }
+        //     i = curri;
+        // }
+        // p = 0;
+    }
+    cout << "NO\n";
 }
 
 int main()

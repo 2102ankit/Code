@@ -33,7 +33,12 @@ void solve()
         cout << n << endl;
         return;
     }
-    cout << ceil((n / k)) + 1 << endl;
+    int ans = 1;
+    ans += (n-1)/k;
+    if((n-1)%k!=0){
+        ans++;
+    }
+    cout << ans << endl;
 }
 
 int main()

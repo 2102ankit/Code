@@ -26,7 +26,7 @@ typedef unordered_map<ll, ll> umap;
 #define all(a) (a).begin(), (a).end()
 #define nl "\n"
 #define forr(n) for (int i = 0; i < n; i++)
-#define fr(i, n) for (int i = 0; i < n; i++)
+#define loop(i, n) for (int i = 0; i < n; i++)
 #define rep(i, x, n) for (int i = x; i < n; i++)
 
 const int MAX_N = 1e5 + 5;
@@ -36,8 +36,39 @@ const ld EPS = 1e-9;
 
 // min max => try bin search
 
+bool isPalindrome(string &s, int start, int end)
+{
+    while (start <= end)
+    {
+        // dbg(start);
+        // dbg(end);
+        if (s[start] != s[end])
+            return false;
+        start++;
+        end--;
+    }
+    return true;
+}
+
 void solve()
 {
+    string s;
+    cin >> s;
+    int start = 0;
+    int end = s.length() - 1;
+    while (end >= 0)
+    {
+        if (isPalindrome(s, 0, end))
+        {
+            end--;
+        }
+        else
+            break;
+    }
+    if (end == -1)
+        cout << -1 << nl;
+    else
+        cout << end + 1 << nl;
 }
 
 int main()

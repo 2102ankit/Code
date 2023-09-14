@@ -26,7 +26,7 @@ typedef unordered_map<ll, ll> umap;
 #define all(a) (a).begin(), (a).end()
 #define nl "\n"
 #define forr(n) for (int i = 0; i < n; i++)
-#define fr(i, n) for (int i = 0; i < n; i++)
+#define loop(i, n) for (int i = 0; i < n; i++)
 #define rep(i, x, n) for (int i = x; i < n; i++)
 
 const int MAX_N = 1e5 + 5;
@@ -38,6 +38,29 @@ const ld EPS = 1e-9;
 
 void solve()
 {
+    string a[3];
+    forr(3)
+    {
+        cin >> a[i];
+    }
+    char chars[3] = {'X', 'O', '+'};
+    for (auto ch : chars)
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            if ((a[0][i] == ch && a[1][i] == ch && a[2][i] == ch) || (a[i][0] == ch && a[i][1] == ch && a[i][2] == ch))
+            {
+                cout << ch << nl;
+                return;
+            }
+        }
+        if ((a[0][0] == ch && a[1][1] == ch && a[2][2] == ch) || (a[0][2] == ch && a[1][1] == ch && a[2][0] == ch))
+        {
+            cout << ch << nl;
+            return;
+        }
+    }
+    cout << "DRAW\n";
 }
 
 int main()

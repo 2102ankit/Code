@@ -4,111 +4,79 @@ using namespace std;
 
 #define dbg(v) \
     cerr << "Line(" << __LINE__ << ") -> " << #v << " = " << (v) << endl;
-#define nl "\n";
 
-class Node
+void nextPermutation(vector<int> &nums)
 {
-public:
-    int data;
-    Node *next;
-
-    // constructor
-    Node(int data)
+    int ptr;
+    ptr = nums.size() - 2;
+    // dbg(ptr);
+    if (nums[ptr] < nums[ptr + 1])
     {
-        this->data = data;
-        this->next = NULL;
-    }
-
-    ~Node()
-    {
-        int val = this->data;
-        if (this->next != NULL)
-        {
-            delete next;
-            next = NULL;
-        }
-        cout << "memory of Node containing data " << val << " is freed" << nl;
-    }
-};
-
-void insert(Node *&tail, int element, int data)
-{
-    if (tail == NULL)
-    {
-        Node *node = new Node(data);
-        tail = node;
-        tail->next = node;
-    }
-    else
-    {
-        Node *curr = tail;
-        while (curr->data != element)
-        {
-            curr = curr->next;
-        }
-        Node *node = new Node(data);
-        node->next = curr->next;
-        curr->next = node;
-    }
-}
-
-void print(Node *&tail)
-{
-    Node *temp = tail;
-    if (tail == NULL)
+        swap(nums[ptr], nums[ptr + 1]);
         return;
-
-    do
-    {
-        cout << temp->data << " ";
-        temp = temp->next;
-        // dbg(temp);
-    } while (temp != tail);
-
-    cout << nl;
-}
-
-void deleteNode(Node *&tail, int val)
-{
-    if (tail == NULL)
-        return;
-    Node *curr = tail;
-    Node *prev = tail;
-    do
-    {
-        prev = curr;
-        curr = curr->next;
-    } while (curr->data != val);
-
-    if (curr == prev)
-    {
-        tail = NULL;
     }
-    if (curr == tail)
-        tail = curr->next;
+    bool isRev = 1;
+    for (int i = 0; i < nums.size() - 1; i++)
+    {
+        if (nums[i + 1] > nums[i])
+        {
+            isRev = 0;
+            break;
+        }
+    }
+    if (isRev)
+    {
+        sort(nums.begin(), nums.end());
+        return;
+    }
 
-    prev->next = curr->next;
-    curr->next = NULL;
-    delete curr;
+    while (true)
+    {
+        ptr--;
+        int key = nums[ptr];
+        int value = INT_MAX, reqdidx = -1;
+
+        for (int i = ptr + 1; i < nums.size(); i++)
+        {
+            if (nums[i] > key && nums[i] < value)
+            {
+                value = nums[i];
+                reqdidx = i;
+            }
+        }
+        if (reqdidx == -1)
+            continue;
+        // cout << "hjio";
+        swap(nums[ptr], nums[reqdidx]);
+        sort((nums.begin() + ptr + 1), nums.end());
+        return;
+    }
 }
 
-int main(int argc, char const *argv[])
+int main()
 {
-    Node *tail = NULL;
-    insert(tail, 5, 1);
-    // insert(tail, 1, 2);
-    // insert(tail, 2, 3);
-    // insert(tail, 3, 4);
-    // insert(tail, 4, 5);
-    // insert(tail, 2, 0);
-    // print(tail);
-    // deleteNode(tail, 0);
-    // print(tail);
-    // deleteNode(tail, 2);
-    print(tail);
-    deleteNode(tail, 1);
-    // print(tail);
-    // deleteNode(tail, 5);
-    print(tail);
-    return 0;
+    vector<int> arr = {1, 2, 3};
+
+    nextPermutation(arr);
+    dbg(arr);
+    nextPermutation(arr);
+    dbg(arr);
+    nextPermutation(arr);
+    dbg(arr);
+    nextPermutation(arr);
+    dbg(arr);
+    nextPermutation(arr);
+    dbg(arr);
+    nextPermutation(arr);
+    dbg(arr);
+    nextPermutation(arr);
+    dbg(arr);
+    next_permutation(arr.begin(), arr.end());
+    dbg(arr)
+        next_permutation(arr.begin(), arr.end());
+    dbg(arr)
+        next_permutation(arr.begin(), arr.end());
+    dbg(arr)
+
+        return 0;
 }

@@ -26,7 +26,7 @@ typedef unordered_map<ll, ll> umap;
 #define all(a) (a).begin(), (a).end()
 #define nl "\n"
 #define forr(n) for (int i = 0; i < n; i++)
-#define fr(i, n) for (int i = 0; i < n; i++)
+#define loop(i, n) for (int i = 0; i < n; i++)
 #define rep(i, x, n) for (int i = x; i < n; i++)
 
 const int MAX_N = 1e5 + 5;
@@ -34,10 +34,32 @@ const ll MOD = 1e9 + 7;
 const ll INF = 1e9;
 const ld EPS = 1e-9;
 
-// min max => try bin search
-
 void solve()
 {
+    int n, m;
+    cin >> n >> m;
+    ll x = m+1;
+    for (int i = 1; i <= n / 2; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
+            cout << x++ << " ";
+        }
+        x = x + m ;
+        cout << nl;
+    }
+    // ll
+     x = 1;
+    for (int i = n / 2 + 1; i <= n; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
+            cout << x++ << " ";
+        }
+        x = x + m;
+        cout << nl;
+    }
+    cout << nl;
 }
 
 int main()

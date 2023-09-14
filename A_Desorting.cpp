@@ -38,6 +38,40 @@ const ld EPS = 1e-9;
 
 void solve()
 {
+    int n;
+    cin >> n;
+    dbg("\n");
+    vector<double> a(n), b(n);
+    forr(n)
+    {
+        cin >> a[i];
+        b[i] = a[i];
+    }
+    sort(all(b));
+    int issame = 1;
+    for (int i = 0; i < n; i++)
+    {
+        dbg(a[i])
+        dbg(b[i])
+        if (a[i] != b[i])
+        {
+            issame = 0;
+            break;
+        }
+    }
+    if (!issame)
+    {
+        cout << 0 << nl;
+        return;
+    }
+
+    double minDiff = INT_MAX;
+    for (int i = 0; i < n - 1; i++)
+    {
+        minDiff = min(minDiff, a[i + 1] - a[i]);
+    }
+    dbg(minDiff);
+    cout << ceil(minDiff / 2.0) << nl;
 }
 
 int main()

@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-// #include "debugging.h"
+#include "debugging.h"
 
 using namespace std;
 
@@ -26,7 +26,7 @@ typedef unordered_map<ll, ll> umap;
 #define all(a) (a).begin(), (a).end()
 #define nl "\n"
 #define forr(n) for (int i = 0; i < n; i++)
-#define fr(i, n) for (int i = 0; i < n; i++)
+#define loop(i, n) for (int i = 0; i < n; i++)
 #define rep(i, x, n) for (int i = x; i < n; i++)
 
 const int MAX_N = 1e5 + 5;
@@ -38,6 +38,41 @@ const ld EPS = 1e-9;
 
 void solve()
 {
+    int n, k;
+    cin >> n >> k;
+    vi a(n);
+    forr(n) cin >> a[i];
+    sort(all(a));
+    // dbg(a);
+    // while (k--)
+    // {
+    //     if (a.back() <= a[0] + a[1])
+    //     {
+    //         a.pop_back();
+    //     }
+    //     else
+    //         a.erase(a.begin(), a.begin() + 2);
+    //     dbg(a);
+    // }
+    // ll s = 0;
+    // forr(a.size()) s += a[i];
+    // cout << s << nl;
+
+    // prefix sum
+    dbg(a)
+    forr(n-1) a[i+1] = a[i+1] + a[i];
+    dbg(a)
+
+    // lets say m out of k times min were removed
+    // 2m minimums removed & k-m maximums remved
+    // sum will be from position 2m + 1 to n - (k-m)
+    ll ans = 0;
+    for(int i=0; i<k; i++){
+        dbg(a[n-(k-i)])
+        dbg(a[2*i])
+        ans = max(ans, a[n-(k-i)] - a[2*i] );
+    }
+    cout << ans << nl;
 }
 
 int main()

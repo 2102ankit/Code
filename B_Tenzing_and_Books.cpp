@@ -1,103 +1,44 @@
 #include <bits/stdc++.h>
-// #include "debugging.h"
-
 using namespace std;
-
-#define dbg(v) \
-    cerr << "Line(" << __LINE__ << ") -> " << #v << " = " << (v) << endl;
 
 #define fastio()                      \
     ios_base::sync_with_stdio(false); \
     cin.tie(NULL);                    \
     cout.tie(NULL)
 
-typedef long long ll;
-typedef long double ld;
-typedef pair<int, int> pii;
-typedef pair<ll, ll> pll;
-typedef vector<ll> vi;
-typedef vector<pll> vpll;
-typedef unordered_map<ll, ll> umap;
-#define ff first
-#define ss second
-#define pb push_back
-#define set_bits(x) __builtin_popcountll(x)
-#define sz(x) ((int)x.size())
-#define all(a) (a).begin(), (a).end()
-#define nl "\n"
-#define forr(n) for (int i = 0; i < n; i++)
-#define loop(i, n) for (int i = 0; i < n; i++)
-#define rep(i, x, n) for (int i = x; i < n; i++)
-
-const int MAX_N = 1e5 + 5;
-const ll MOD = 1e9 + 7;
-const ll INF = 1e9;
-const ld EPS = 1e-9;
-
 void solve()
 {
     int n, x;
     cin >> n >> x;
-    if (x == 0)
-    {
-        cout << "Yes\n";
-        return;
-    }
-    ll ans = 0;
-    bool flag = false;
-    loop(i, n)
-    {
-        int ai;
-        cin >> ai;
-        if (ai <= x)
-        {
-            ans = ans | ai;
-            if (ans == x)
-            {
-                cout << "Yes\n";
-                return;
-            }
+    int a[100001];
+    int s = 0;
+
+    for (int i = 0; i < 3; i++){
+        for (int j = 0; j < n; j++)cin >> a[j];
+        for (int j = 0; j < n; j++){
+            if ((x | a[j]) != x)break;
+            s |= a[j];
         }
-        else
-            while (i != n)
-                i++;
     }
-    loop(i, n)
-    {
-        int ai;
-        cin >> ai;
-        if (ai <= x)
-        {
-            ans = ans | ai;
-            if (ans == x)
-            {
-                cout << "Yes\n";
-                return;
-            }
-        }
-        else
-            while (i != n)
-                i++;
-    }
-    loop(i, n)
-    {
-        int ai;
-        cin >> ai;
-        if (ai <= x)
-        {
-            ans = ans | ai;
-            if (ans == x)
-            {
-                cout << "Yes\n";
-                return;
-            }
-        }
-        else
-            while (i != n)
-                i++;
-    }
-    cout << "No\n";
+    if (s == x)cout << "Yes\n";
+    else cout << "No\n";
+
+    // int n, x, a[100000];
+    //     cin >> n >> x;
+    //     int s = 0;
+    //     for (int i = 0; i < 3; i++) {
+    //         for (int j = 0; j < n; j++) cin >> a[j];
+    //         for (int j = 0; j < n; j++) {
+    //             if ((x | a[j]) != x) break;
+    //             s |= a[j];
+    //         }
+    //     }
+    //     if (s == x) cout << "YES\n";
+    //     else cout << "NO\n";
 }
+
+
+        
 
 int main()
 {
@@ -107,18 +48,6 @@ int main()
 
     for (int t = 1; t <= tc; t++)
     {
-        // cout << "Case #" << t << ": ";
         solve();
     }
 }
-
-/***
- * If n ≤ 12, the time complexity can be O(n!).
- * If n ≤ 25, the time complexity can be O(2^n).
- * If n ≤ 100, the time complexity can be O(n^4).
- * If n ≤ 500, the time complexity can be O(n^3).
- * If n ≤ 10^4, the time complexity can be O(n^2).
- * If n ≤ 10^6, the time complexity can be O(n log n).
- * If n ≤ 10^8, the time complexity can be O(n).
- * If n > 10^8, the time complexity can be O(log n) or O(1)
- ***/

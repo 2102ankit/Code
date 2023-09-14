@@ -38,6 +38,29 @@ const ld EPS = 1e-9;
 
 void solve()
 {
+    vector<string> grid(8);
+    forr(8) cin >> grid[i];
+    string ans = "";
+
+    for(int i=0; i<8; i++){
+        for(int j=0; j<8; j++){
+            // dbg(grid[i][j])
+            if(grid[i][j]=='.')
+                continue;
+            else{
+                // dbg(ans);
+                int k=i;
+                while (k!=8 && grid[k][j]!='.')
+                {
+                    ans += grid[k++][j];
+                    // dbg(ans);
+                }
+                cout << ans << nl;
+                return;
+                
+            }
+        }
+    }
 }
 
 int main()

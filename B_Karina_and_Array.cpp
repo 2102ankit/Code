@@ -38,6 +38,25 @@ const ld EPS = 1e-9;
 
 void solve()
 {
+    int n;
+    cin >> n;
+    vi a(n);
+    forr(n) cin >> a[i];
+    ll ans = a[0] * a[1];
+
+    // for (int i = 0; i < n; i++)
+    // {
+    //     for (int j = i + 1; j < n; j++)
+    //     {
+    //         ans = max(ans, a[i] * a[j]);
+    //     }
+    // }
+    // cout << ans << nl;
+
+    sort(all(a));
+    ans = max(a[0]*a[1], a[n-1]*a[n-2]);
+    cout << ans << nl;
+
 }
 
 int main()

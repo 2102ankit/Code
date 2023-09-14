@@ -26,7 +26,7 @@ typedef unordered_map<ll, ll> umap;
 #define all(a) (a).begin(), (a).end()
 #define nl "\n"
 #define forr(n) for (int i = 0; i < n; i++)
-#define fr(i, n) for (int i = 0; i < n; i++)
+#define loop(i, n) for (int i = 0; i < n; i++)
 #define rep(i, x, n) for (int i = x; i < n; i++)
 
 const int MAX_N = 1e5 + 5;
@@ -36,8 +36,57 @@ const ld EPS = 1e-9;
 
 // min max => try bin search
 
+bool possible(vi &a, ll mid, int n)
+{
+    ll i = 0, j = 0;
+    // i aur j ke corresponding beech ka value calculate karo
+    // unse beechwale value ka diff calculate karo
+    // max diff mera mid value se kam hona chahiye
+    // warna next worker to kaam assign
+    // agar workers 3 hai to fir true else false;
+    int comps = 0;
+    while (i < n && j < n)
+    {
+        ll mini = a[i];
+        ll maxi = a[j];
+        ll avg = (mini + maxi) / 2;
+        ll diff = max(maxi - avg, avg - mini);
+        if (diff <= mid)
+        {
+            j++;
+        }
+        else
+        {
+            comps++;
+            i = j;
+        }
+    }
+    if (comps <= 2)
+        return true;
+    return false;
+}
+
 void solve()
 {
+    int n;
+    cin >> n;
+    vi a(n);
+    forr(n) cin >> a[i];
+    sort(all(a));
+    ll lo = 0, hi = 1e9;
+    ll ans = 0;
+    while (lo <= hi)
+    {
+        ll mid = (lo + hi) / 2;
+        if (possible(a, mid, n))
+        {
+            ans = mid;
+            hi = mid - 1;
+        }
+        else
+            lo = mid + 1;
+    }
+    cout << ans << nl;
 }
 
 int main()

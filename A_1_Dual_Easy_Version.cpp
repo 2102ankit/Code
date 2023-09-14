@@ -38,6 +38,54 @@ const ld EPS = 1e-9;
 
 void solve()
 {
+    int n;
+    cin >> n;
+    vi a(n) /*, b(n)*/;
+    forr(n)
+    {
+        cin >> a[i];
+        // b[i] = a[i];
+    }
+    // sort(all(b));
+    // bool isSame = 1;
+    // for (int i = 0; i < n; i++)
+    // {
+    //     if (a[i] != b[i])
+    //     {
+    //         isSame = 0;
+    //         break;
+    //     }
+    // }
+    // if (isSame)
+    // {
+    //     cout << 0 << nl;
+    //     return;
+    // }
+
+    int maxidx = 0;
+    for(int i=0; i<n; i++)
+        if(a[i]>a[maxidx])
+            maxidx = i;
+
+    vector<pair<int,int>> ans;
+
+    for(int i=0; i<n-1; i++){
+        if(a[i+1]<a[i]){
+            while (a[i+1]<a[i])
+            {
+                a[i+1]+=a[maxidx];
+                ans.push_back({i+1,maxidx});
+            }
+            if(a[i+1]>a[maxidx])
+                maxidx = i+1;           
+            
+        }
+    }
+    // dbg(a);
+    cout << ans.size() << nl;
+    for(auto el : ans){
+        cout << el.first+1 << " " << el.second+1 << nl;
+    }
 }
 
 int main()

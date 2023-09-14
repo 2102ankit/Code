@@ -38,6 +38,28 @@ const ld EPS = 1e-9;
 
 void solve()
 {
+    int n, k;
+    cin >> n >> k;
+    vi arr(n), b(n - 1, 0);
+    forr(n) cin >> arr[i];
+    sort(all(arr));
+    for (int i = 0; i < n - 1; i++)
+    {
+        if (arr[i + 1] - arr[i] <= k)
+            b[i] = 1;
+    }
+    int maxl = 0, currl = 0;
+    for (int i = 0; i < n - 1; i++)
+    {
+        if (b[i] == 1)
+        {
+            currl++;
+            maxl = max(maxl, currl);
+        }
+        else
+            currl = 0;
+    }
+    cout << n - 1 - maxl << nl;
 }
 
 int main()

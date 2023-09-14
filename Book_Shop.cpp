@@ -26,7 +26,7 @@ typedef unordered_map<ll, ll> umap;
 #define all(a) (a).begin(), (a).end()
 #define nl "\n"
 #define forr(n) for (int i = 0; i < n; i++)
-#define fr(i, n) for (int i = 0; i < n; i++)
+#define loop(i, n) for (int i = 0; i < n; i++)
 #define rep(i, x, n) for (int i = x; i < n; i++)
 
 const int MAX_N = 1e5 + 5;
@@ -34,17 +34,38 @@ const ll MOD = 1e9 + 7;
 const ll INF = 1e9;
 const ld EPS = 1e-9;
 
-// min max => try bin search
-
 void solve()
 {
+    int n, x;
+    cin >> n >> x;
+    vi price(n + 1), pages(n + 1);
+    rep(i, 1, n + 1) cin >> price[i];
+    rep(i, 1, n + 1) cin >> pages[i];
+    int dp[n + 1][x + 1];
+
+    for (int i = 0; i <= n; i++)
+    {
+        for (int j = 0; j <= x; j++)
+        {
+            if (i == 0 || j == 0)
+                dp[i][j] = 0;
+            else
+            {   
+                int op1 = dp[i - 1][j];
+                int op2 = (j < price[i]) ? 0 : pages[i] + dp[i - 1][j - price[i]];
+                dp[i][j] = max(op1, op2);
+            }
+        }
+    }
+
+    cout << dp[n][x];
 }
 
 int main()
 {
     fastio();
     int tc = 1;
-    cin >> tc;
+    // cin >> tc;
 
     for (int t = 1; t <= tc; t++)
     {

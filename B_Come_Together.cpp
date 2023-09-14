@@ -26,7 +26,7 @@ typedef unordered_map<ll, ll> umap;
 #define all(a) (a).begin(), (a).end()
 #define nl "\n"
 #define forr(n) for (int i = 0; i < n; i++)
-#define fr(i, n) for (int i = 0; i < n; i++)
+#define loop(i, n) for (int i = 0; i < n; i++)
 #define rep(i, x, n) for (int i = x; i < n; i++)
 
 const int MAX_N = 1e5 + 5;
@@ -38,6 +38,39 @@ const ld EPS = 1e-9;
 
 void solve()
 {
+    int ax, ay, bx, by, cx, cy;
+    cin >> ax >> ay >> bx >> by >> cx >> cy;
+    int lb = 0, lc = 0, rb = 0, rc = 0, ub = 0, uc = 0, db = 0, dc = 0;
+    if (bx > ax)
+    { // b to right of a
+        rb = bx - ax;
+    }
+    else
+        lb = ax - bx;
+
+    if (by > ay)
+    {
+        ub = by - ay;
+    }
+    else
+        db = ay - by;
+
+    if (cx > ax)
+    {
+        rc = cx - ax;
+    }
+    else
+        lc = ax - cx;
+
+    if (cy > ay)
+    {
+        uc = cy - ay;
+    }
+    else
+        dc = ay - cy;
+
+    ll sum = min(ub, uc) + min(db, dc) + min(rb, rc) + min(lb, lc);
+    cout << sum + 1 << nl;
 }
 
 int main()

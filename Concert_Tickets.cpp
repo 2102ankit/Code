@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-// #include "debugging.h"
+#include "debugging.h"
 
 using namespace std;
 
@@ -26,7 +26,7 @@ typedef unordered_map<ll, ll> umap;
 #define all(a) (a).begin(), (a).end()
 #define nl "\n"
 #define forr(n) for (int i = 0; i < n; i++)
-#define fr(i, n) for (int i = 0; i < n; i++)
+#define loop(i, n) for (int i = 0; i < n; i++)
 #define rep(i, x, n) for (int i = x; i < n; i++)
 
 const int MAX_N = 1e5 + 5;
@@ -36,15 +36,31 @@ const ld EPS = 1e-9;
 
 // min max => try bin search
 
+int lower(vi &a, int target)
+{
+    
+}
+
 void solve()
 {
+    int n, m;
+    cin >> n >> m;
+    vi a(n), b(m);
+    forr(n) cin >> a[i];
+    dbg(a); 
+    forr(m) cin >> b[i];
+    dbg(b);
+    sort(all(a));
+    cout << lower(a, 4) << nl;
+    cout << lower(a, 3) << nl;
+    // cout << lower(a, 2);
 }
 
 int main()
 {
     fastio();
     int tc = 1;
-    cin >> tc;
+    // cin >> tc;
 
     for (int t = 1; t <= tc; t++)
     {
