@@ -38,32 +38,37 @@ const ld EPS = 1e-9;
 
 void solve()
 {
-    int n, x;
-    cin >> n >> x;
-    vi c(n + 1), p(n + 1);
-    forr(n) cin >> c[i + 1];
-    forr(n) cin >> p[i + 1];
-    int dp[n + 1][x + 1];
-    for (int book = 0; book <= n; book++)    {
-        for (int money = 0; money <= x; money++)        {
-            if (money == 0 || book == 0)
-                dp[book][money] = 0;
-            else{
-                int op1 = (book == 1) ? 0 : dp[book - 1][money];
-                int op2 = (money < c[book]) ? 0 : (p[book] + dp[book - 1][money - c[book]]);
-                dp[book][money] = max(op1, op2);
-            }
-        }
+    int n, k;
+    cin >> n >> k;
+    vi a(n);
+    int prod = 1;
+    for (int i = 0; i < n; i++)
+    {
+        cin >> a[i];
+        prod *= a[i];
     }
-
-    cout << dp[n][x];
+    if (prod == 1 && k >= 3 || (prod == 7 || prod == 17) && k >= 2 || (prod == 7 * 17 || prod == 17 * 17) && k >= 1 || prod == 2023)
+    {
+        cout << "YES\n";
+        int x = 2023;
+        while (k != 0)
+        {
+            x = x/prod;
+            cout << x  << " ";
+            prod = x / prod;
+            k--;
+        }
+        cout << "\n";
+    }
+    else
+        cout << "NO\n";
 }
 
 int main()
 {
     fastio();
     int tc = 1;
-    // cin >> tc;
+    cin >> tc;
 
     for (int t = 1; t <= tc; t++)
     {

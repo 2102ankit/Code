@@ -40,30 +40,25 @@ void solve()
 {
     int n, x;
     cin >> n >> x;
-    vi c(n + 1), p(n + 1);
-    forr(n) cin >> c[i + 1];
-    forr(n) cin >> p[i + 1];
-    int dp[n + 1][x + 1];
-    for (int book = 0; book <= n; book++)    {
-        for (int money = 0; money <= x; money++)        {
-            if (money == 0 || book == 0)
-                dp[book][money] = 0;
-            else{
-                int op1 = (book == 1) ? 0 : dp[book - 1][money];
-                int op2 = (money < c[book]) ? 0 : (p[book] + dp[book - 1][money - c[book]]);
-                dp[book][money] = max(op1, op2);
-            }
-        }
+    vi a(n+1);
+    a[0] = 0;
+    forr(n)
+        cin >> a[i+1];
+    // cerr << a;
+    int maxDiff = 2*(x - a.back());
+    for(int i=0; i<n; i++){
+        int diff = a[i+1] - a[i];
+        maxDiff = max(maxDiff, diff);
     }
-
-    cout << dp[n][x];
+    cout << maxDiff << endl;
+    
 }
 
 int main()
 {
     fastio();
     int tc = 1;
-    // cin >> tc;
+    cin >> tc;
 
     for (int t = 1; t <= tc; t++)
     {

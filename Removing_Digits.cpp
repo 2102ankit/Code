@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-
 // #include "debugging.h"
 
 using namespace std;
@@ -16,7 +15,7 @@ typedef long long ll;
 typedef long double ld;
 typedef pair<int, int> pii;
 typedef pair<ll, ll> pll;
-typedef vector<ll> vi;  
+typedef vector<ll> vi;
 typedef vector<pll> vpll;
 typedef unordered_map<ll, ll> umap;
 #define ff first
@@ -27,7 +26,7 @@ typedef unordered_map<ll, ll> umap;
 #define all(a) (a).begin(), (a).end()
 #define nl "\n"
 #define forr(n) for (int i = 0; i < n; i++)
-#define loop(i, n) for (int i = 0; i < n; i++)
+#define fr(i, n) for (int i = 0; i < n; i++)
 #define rep(i, x, n) for (int i = x; i < n; i++)
 
 const int MAX_N = 1e5 + 5;
@@ -35,33 +34,29 @@ const ll MOD = 1e9 + 7;
 const ll INF = 1e9;
 const ld EPS = 1e-9;
 
+// min max => try bin search
+
 void solve()
 {
     int n;
     cin >> n;
-    int dp[n + 1];
+    vector<int> dp(n + 1, INT_MAX);
     dp[0] = 0;
-
-    /*
-     * dp[i] represets min way of geeting num i to zero
-     * dp[0] = 0 because there is no meaning getting zero to zero again
-     * final ans dp[n] i.e. min ways of conerting n to 0
-     * dp[i] is min of the 1 + dp of i - its digits
-    */
     for (int i = 1; i <= n; i++)
     {
-        int temp = i;
-        int mn = INT_MAX;
-        while (temp != 0)
+        int num = i;
+        // int steps = INT_MAX;
+        while (num!= 0)
         {
-            int di = temp % 10;
-            temp /= 10;
-            if (di != 0 )
-                mn = min(mn, 1 + dp[i - di]);
+            int digit = num%10;
+            num = num/10;
+            if(digit<=i && digit!=0)
+                dp[i] = min(dp[i], 1 + dp[i - digit]);
         }
-        dp[i] = mn;
+        // cerr << dp[i] << nl;
     }
-    cout << dp[n];
+
+    cout << dp[n] << nl;
 }
 
 int main()

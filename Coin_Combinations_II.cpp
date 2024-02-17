@@ -26,7 +26,8 @@ typedef unordered_map<ll, ll> umap;
 #define all(a) (a).begin(), (a).end()
 #define nl "\n"
 #define forr(n) for (int i = 0; i < n; i++)
-#define loop(i, n) for (int i = 0; i < n; i++)
+#define loop(x, n) for (int i = x; i < n; i++)
+#define fr(i, n) for (int i = 0; i < n; i++)
 #define rep(i, x, n) for (int i = x; i < n; i++)
 
 const int MAX_N = 1e5 + 5;
@@ -34,22 +35,21 @@ const ll MOD = 1e9 + 7;
 const ll INF = 1e9;
 const ld EPS = 1e-9;
 
+// min max => try bin search
+
 void solve()
 {
+    // dp[i,x] = number of valid ways of getting sumx using the first i coins
+    // dp[i,x] = dp[i-1,x] + dp[i,x-C[i]]
+    // final dp[n,X];
+    // base case sum 0 has 1 way : dp[i,0] = 1;
     int n, x;
     cin >> n >> x;
-    vi v(n + 1);
-    for (int i = 1; i <= n; i++)
-    {
-        cin >> v[i];
-        // dbg(v[i]);
-    }
+    vector<int> v(n + 1);
+    loop(1, n + 1) cin >> v[i];
+    // dbg(v);
+    int dp[n + 1][x + 1];
 
-    // dbg("-----------");
-    // ll dp[n + 1][x + 1];
-    vector<vector<int>> dp(n + 1, vector<int>(x + 1, 0));
-    // dbg(dp);
-    // dbg("-----------");
     for (int i = 1; i <= n; i++)
     {
         for (int sum = 0; sum <= x; sum++)
@@ -58,10 +58,9 @@ void solve()
                 dp[i][sum] = 1;
             else
             {
-                ll op1 = (v[i] > sum) ? 0 : dp[i][sum - v[i]];
-                ll op2 = (i == 1) ? 0 : dp[i - 1][sum];
+                int op1 = (v[i] > sum) ? 0 : dp[i][sum - v[i]];
+                int op2 = (i == 1) ? 0 : dp[i - 1][sum];
                 dp[i][sum] = (op1 + op2) % MOD;
-                // dbg(dp[i][sum]);
             }
         }
     }

@@ -26,7 +26,7 @@ typedef unordered_map<ll, ll> umap;
 #define all(a) (a).begin(), (a).end()
 #define nl "\n"
 #define forr(n) for (int i = 0; i < n; i++)
-#define loop(i, n) for (int i = 0; i < n; i++)
+#define fr(i, n) for (int i = 0; i < n; i++)
 #define rep(i, x, n) for (int i = x; i < n; i++)
 
 const int MAX_N = 1e5 + 5;
@@ -34,47 +34,46 @@ const ll MOD = 1e9 + 7;
 const ll INF = 1e9;
 const ld EPS = 1e-9;
 
+// min max => try bin search
+
 void solve()
 {
     int n;
     cin >> n;
-    int grid[n + 1][n + 1];
-    rep(i, 1, n + 1)
+    bool grid[n + 1][n + 1];
+    char ch;
+    for (int i = 1; i <= n; i++)
     {
-        rep(j, 1, n + 1)
+        for (int j = 1; j <= n; j++)
         {
-            char ch;
             cin >> ch;
-            if (ch == '.')
-                grid[i][j] = 0;
-            else
-                grid[i][j] = 1;
+            grid[i][j] = (ch == '.') ? 0 : 1;
+            // cerr << grid[i][j] <<" ";
         }
+        // cerr << nl;
     }
-
     int dp[n + 1][n + 1];
+
     for (int i = n; i >= 1; i--)
     {
         for (int j = n; j >= 1; j--)
         {
+            if (grid[i][j])
+            {
+                dp[i][j] = 0;
+                continue;
+            }
             if (i == n && j == n)
             {
-                dp[n][n] = 1;
+                dp[i][j] = 1;
+                continue;
             }
-            else
-            {
-                int op1 = (i == n) ? 0 : dp[i + 1][j];
-                int op2 = (j == n) ? 0 : dp[i][j + 1];
-                dp[i][j] = (op1 + op2) % MOD;
-                if (grid[i][j] == 1)
-                    dp[i][j] = 0;
-            }
+            int op1 = (i < n) ? dp[i + 1][j] : 0;
+            int op2 = (j < n) ? dp[i][j + 1] : 0;
+            dp[i][j] = (op1 + op2) % MOD;
         }
     }
-    if (grid[n][n])
-        cout << 0;
-    else
-        cout << dp[1][1];
+    cout << dp[1][1] << nl;
 }
 
 int main()

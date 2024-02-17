@@ -38,32 +38,30 @@ const ld EPS = 1e-9;
 
 void solve()
 {
-    int n, x;
-    cin >> n >> x;
-    vi c(n + 1), p(n + 1);
-    forr(n) cin >> c[i + 1];
-    forr(n) cin >> p[i + 1];
-    int dp[n + 1][x + 1];
-    for (int book = 0; book <= n; book++)    {
-        for (int money = 0; money <= x; money++)        {
-            if (money == 0 || book == 0)
-                dp[book][money] = 0;
-            else{
-                int op1 = (book == 1) ? 0 : dp[book - 1][money];
-                int op2 = (money < c[book]) ? 0 : (p[book] + dp[book - 1][money - c[book]]);
-                dp[book][money] = max(op1, op2);
-            }
-        }
+    string s;
+    cin >> s;
+    char c = s[0];
+    int n = s[1] - '0';
+    for (int i = 1; i <= 8; i++)
+    {
+        if (i == n)
+            continue;
+        cout << c << i << "\n";
     }
 
-    cout << dp[n][x];
+    for (char d = 'a'; d <= 'h'; d++)
+    {
+        if (d == c)
+            continue;
+        cout << d << n << "\n";
+    }
 }
 
 int main()
 {
     fastio();
     int tc = 1;
-    // cin >> tc;
+    cin >> tc;
 
     for (int t = 1; t <= tc; t++)
     {

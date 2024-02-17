@@ -35,35 +35,52 @@ const ll INF = 1e9;
 const ld EPS = 1e-9;
 
 // min max => try bin search
+bool isPossible(vi &a, int k, int mid)
+{
+
+    int cows = 1;
+    int lastPos = a[0];
+    for (int i = 1; i < a.size(); i++)
+    {
+        // dbg(a[i]-lastPos);
+        if(a[i]-lastPos>=mid){
+            cows++;
+            if(cows>=k){
+                return true;
+            }
+            lastPos = a[i];
+        }
+    }
+    return false;
+}
 
 void solve()
 {
-    int n, x;
-    cin >> n >> x;
-    vi c(n + 1), p(n + 1);
-    forr(n) cin >> c[i + 1];
-    forr(n) cin >> p[i + 1];
-    int dp[n + 1][x + 1];
-    for (int book = 0; book <= n; book++)    {
-        for (int money = 0; money <= x; money++)        {
-            if (money == 0 || book == 0)
-                dp[book][money] = 0;
-            else{
-                int op1 = (book == 1) ? 0 : dp[book - 1][money];
-                int op2 = (money < c[book]) ? 0 : (p[book] + dp[book - 1][money - c[book]]);
-                dp[book][money] = max(op1, op2);
-            }
+    int n, k;
+    cin >> n >> k;
+    vi a(n);
+    forr(n) cin >> a[i];
+    sort(all(a));
+    int s = 0, e = a[n - 1] - a[0], ans = -1;
+    while (s <= e)
+    {
+        int mid = s + (e - s) / 2;
+        if (isPossible(a, k, mid))
+        {
+            ans = mid;
+            s = mid + 1;
         }
+        else
+            e = mid - 1;
     }
-
-    cout << dp[n][x];
+    cout << ans << nl;
 }
 
 int main()
 {
     fastio();
     int tc = 1;
-    // cin >> tc;
+    cin >> tc;
 
     for (int t = 1; t <= tc; t++)
     {

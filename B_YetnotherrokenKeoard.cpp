@@ -38,32 +38,51 @@ const ld EPS = 1e-9;
 
 void solve()
 {
-    int n, x;
-    cin >> n >> x;
-    vi c(n + 1), p(n + 1);
-    forr(n) cin >> c[i + 1];
-    forr(n) cin >> p[i + 1];
-    int dp[n + 1][x + 1];
-    for (int book = 0; book <= n; book++)    {
-        for (int money = 0; money <= x; money++)        {
-            if (money == 0 || book == 0)
-                dp[book][money] = 0;
-            else{
-                int op1 = (book == 1) ? 0 : dp[book - 1][money];
-                int op2 = (money < c[book]) ? 0 : (p[book] + dp[book - 1][money - c[book]]);
-                dp[book][money] = max(op1, op2);
-            }
-        }
-    }
+    string s;
+    cin >> s;
+    // int lci = -1, lsi = -1;
+    vi lci, lsi;
+    lci.pb(-1);
+    lsi.pb(-1);
+    int n = s.length();
+    for (int i = 0; i < n; i++)
+    {
+        char c = s[i];
 
-    cout << dp[n][x];
+        if (c == 'b' && lsi.back() != -1)
+        {
+            s[lsi.back()] = '.';
+            lsi.pop_back();
+        }
+        else if (c == 'B' && lci.back() != -1)
+        {
+            s[lci.back()] = '.';
+            lci.pop_back();
+        }
+        else if (c >= 'a' && c <= 'z')
+        {
+            lsi.pb(i);
+        }
+        else if (c >= 'A' && c <= 'Z')
+            lci.pb(i);
+    }
+    string ans = "";
+    // cout << "string = " << s << nl;
+    for (auto c : s)
+    {
+        if (c == '.' || c=='b' || c=='B')
+            continue;
+        else
+            ans += c;
+    }
+    cout << ans << nl;
 }
 
 int main()
 {
     fastio();
     int tc = 1;
-    // cin >> tc;
+    cin >> tc;
 
     for (int t = 1; t <= tc; t++)
     {
