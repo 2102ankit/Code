@@ -70,5 +70,9 @@
         "typeindex": "cpp",
         "typeinfo": "cpp",
         "valarray": "cpp"
-    }
+    },
+    "editor.fontFamily": "'JetBrains Mono', Consolas, 'Courier New', monospace",
+    "editor.fontSize": 14,
+    "editor.inlayHints.fontFamily": "'JetBrains Mono'",
+    "editor.fontVariations": false
 }
